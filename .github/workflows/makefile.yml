@@ -17,11 +17,11 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v6
+  
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v1.1.3
-        with:
-            'vs-version: `[2010)"
-            
+        with:          
+            'vs-version:`[2010)"
       - name: Build Werkkzeug
         run: |
           $env:Path += ";" + $pwd.Path + "\yasm-1.3.0\;";
