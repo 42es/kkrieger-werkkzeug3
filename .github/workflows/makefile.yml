@@ -20,8 +20,6 @@ jobs:
 
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v2
-        with:
-              vs-version: '[17.12)'
 
       - name: Build Werkkzeug
         run: |
