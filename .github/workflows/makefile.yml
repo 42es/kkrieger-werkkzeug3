@@ -1,15 +1,15 @@
 name: build_werkkzeug3
 
 on:
- workflow_dispatch
-push:
+  workflow_dispatch: 
+  push:
     branches: [ "master", "trace" ]
   pull_request:
     branches: [ "master", "trace" ]
 
 env:
   SOLUTION_FILE_PATH: .
-  BUILD_CONFIGURATION: Debug
+  BUILD_CONFIGURATION: debug
 
 jobs:
   build:
@@ -23,23 +23,13 @@ jobs:
 
       - name: Build Werkkzeug
         run: |
-          $env:Path += ";" + $pwd.Path + "\yasm-1.3.0\";
-          msbuild 'werkkzeug3_kkrieger/wz3projects.sln' /p:configuration=Debug /p:platform=x86
-
-      - name: Build Werkkzeug
-        run: |
-          $env:Path += ";" + $pwd.Path + "\yasm-1.3.0\";
-          msbuild 'werkkzeug3/wz3projects.sln' /p:configuration=Debug /p:platform=x86
-
-      - name: Build RauschGenerator2
-        run: |
-          $env:Path += ";" + $pwd.Path + "\yasm-1.3.0\";
-          msbuild 'RG2/TG2.sln' /p:configuration=Debug /p:platform=x86
+          $env:Path += ";" + $pwd.Path + "\yasm-1.3.0\;";
+          msbuild 'werkkzeug3_kkrieger/wz3projects.sln' /p:configuration=debug /p:platform=x86
 
       - name: Build GenThree
         run: |
-          $env:Path += ";" + $pwd.Path + "\yasm-1.3.0\";
-          msbuild 'genthree/genthree.sln' /p:configuration=Debug /p:platform=Win32
+          $env:Path += ";" + $pwd.Path + "\yasm-1.3.0\;";
+          msbuild 'genthree/genthree.sln' /p:configuration=debug /p:platform=Win32
 
       # - run: Get-ChildItem -Recurse
         
@@ -54,27 +44,14 @@ jobs:
         with:
           name: Kkrieger-Werkkzeug-#${{ github.run_number }}-${{ github.sha }}
           path: |
-            ${{ github.workspace }}/werkkzeug3_kkrieger/example_cube/Debug/example_cube.exe
-            ${{ github.workspace }}/werkkzeug3_kkrieger/player_demo/Debug/player_demo.exe
-            ${{ github.workspace }}/werkkzeug3_kkrieger/player_intro/Debug/player_intro.exe
-            ${{ github.workspace }}/werkkzeug3_kkrieger/player_kkrieger/Debug/player_kkrieger.exe
-            ${{ github.workspace }}/werkkzeug3_kkrieger/player_mobile/Debug/player_mobile.exe
-            ${{ github.workspace }}/werkkzeug3_kkrieger/shadercompile/Debug/shadercompile.exe
-            ${{ github.workspace }}/werkkzeug3_kkrieger/werkkzeug3/Debug/werkkzeug3.exe
-
-            ${{ github.workspace }}/werkkzeug3/wz_mobile/Debug/wz_mobile.exe
-            ${{ github.workspace }}/werkkzeug3/player_mobile/Debug/player_mobile.exe
-            ${{ github.workspace }}/werkkzeug3/player_kkrieger/Debug/player_kkrieger.exe
-            ${{ github.workspace }}/werkkzeug3/werkkzeug3te/Debug/werkkzeug3te.exe
-            ${{ github.workspace }}/werkkzeug3/materials/Debug/materials.exe
-            ${{ github.workspace }}/werkkzeug3/fried/Debug/fried.exe
-            ${{ github.workspace }}/werkkzeug3/player_intro/Debug/player_intro.exe
-            ${{ github.workspace }}/werkkzeug3/player_demo/Debug/player_demo.exe
-            ${{ github.workspace }}/werkkzeug3/werkkzeug3/Debug/werkkzeug3.exe
-
+            ${{ github.workspace }}/werkkzeug3_kkrieger/example_cube/debug/example_cube.exe
+            ${{ github.workspace }}/werkkzeug3_kkrieger/player_demo/debug/player_demo.exe
+            ${{ github.workspace }}/werkkzeug3_kkrieger/player_intro/debug/player_intro.exe
+            ${{ github.workspace }}/werkkzeug3_kkrieger/player_kkrieger/debug/player_kkrieger.exe
+            ${{ github.workspace }}/werkkzeug3_kkrieger/shadercompile/debug/shadercompile.exe
+            ${{ github.workspace }}/werkkzeug3_kkrieger/werkkzeug3/debug/werkkzeug3.exe
             ${{ github.workspace }}/werkkzeug3_kkrieger/data/*
-            ${{ github.workspace }}/genthree/Debug/genthree.exe
-            ${{ github.workspace }}/RG2/Debug/RauschGenerator2.exe
+            ${{ github.workspace }}/genthree/debug/genthree.exe
             ${{ github.workspace }}/genthree/data/*
             ${{ github.workspace }}/docs/*
           if-no-files-found: warn
