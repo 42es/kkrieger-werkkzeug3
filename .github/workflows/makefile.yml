@@ -24,7 +24,7 @@ jobs:
       - name: Build Werkkzeug
         run: |
           $env:Path += ";" + $pwd.Path + "\yasm-1.3.0\;";
-          msbuild 'werkkzeug3/wz3projects.sln' /p:configuration=debug /p:platform=any cpu
+          msbuild 'werkkzeug3/wz3projects.sln' /p:configuration=debug /p:platform=anycpu
 
       - name: Build GenThree
         run: |
